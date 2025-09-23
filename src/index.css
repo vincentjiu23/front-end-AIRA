@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+/* Global Reset & Tailwind Harmony */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  background-color: #ffffff;
+  color: #1f2937; /* Tailwind gray-800 */
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0;
+}
+
+/* Links */
+a {
+  font-weight: 500;
+  color: #2563eb; /* Tailwind blue-600 */
+  text-decoration: none;
+}
+a:hover {
+  color: #1d4ed8; /* Tailwind blue-700 */
+}
+
+/* Buttons */
+button {
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 0.6em 1.2em;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  background-color: #2563eb;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+button:hover {
+  background-color: #1d4ed8;
+}
+button:focus,
+button:focus-visible {
+  outline: 2px solid #93c5fd; /* Tailwind blue-300 */
+  outline-offset: 2px;
+}
+
+/* Optional: Light/Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  html, body {
+    background-color: #1f1f1f;
+    color: #f3f4f6; /* Tailwind gray-100 */
+  }
+  a {
+    color: #93c5fd;
+  }
+  a:hover {
+    color: #60a5fa;
+  }
+  button {
+    background-color: #3b82f6;
+  }
+  button:hover {
+    background-color: #2563eb;
+  }
+}

@@ -1,0 +1,62 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./App.css";
+
+// General
+import Navbar from "./components/Navbar";
+import HomePage from "./components/HomePage";
+import NewsSection from "./components/NewsSection";
+import NewsDetail from "./components/NewsDetail";
+
+// Diagnosis
+import DiagnosisSection from "./components/DiagnosisSection";
+import UploadDiagnosis from "./components/UploadDiagnosis";
+import UploadDiagnosisMulti from "./components/UploadDiagnosisMulti";
+import ResultDiagnosis from "./components/ResultDiagnosis";
+
+// Prognosis
+import PrognosisSection from "./components/PrognosisSection";
+import UploadPrognosis from "./components/UploadPrognosis";
+import UploadPrognosisMulti from "./components/UploadPrognosisMulti";
+import ResultPrognosis from "./components/ResultPrognosis";
+
+// Treatment
+import TreatmentSection from "./components/TreatmentSection";
+import UploadTreatment from "./components/UploadTreatment";
+import UploadTreatmentMulti from "./components/UploadTreatmentMulti";
+import ResultTreatment from "./components/ResultTreatment";
+
+function App() {
+  return (
+    <Router>
+      <Navbar />
+      <Routes>
+        {/* Home */}
+        <Route path="/" element={<HomePage />} />
+
+        {/* Diagnosis */}
+        <Route path="/diagnosis" element={<DiagnosisSection />} />
+        <Route path="/upload/diagnosis/:cancerSlug" element={<UploadDiagnosis />} />
+        <Route path="/upload-diagnosis/:cancerSlug" element={<UploadDiagnosis />} />
+        <Route path="/result-diagnosis" element={<ResultDiagnosis />} />
+
+        {/* Prognosis */}
+        <Route path="/prognosis" element={<PrognosisSection />} />
+        <Route path="/upload/prognosis" element={<UploadPrognosis />} />
+        <Route path="/upload/prognosis/multi" element={<UploadPrognosisMulti />} />
+        <Route path="/result/prognosis" element={<ResultPrognosis />} />
+
+        {/* Treatment */}
+        <Route path="/treatment" element={<TreatmentSection />} />
+        <Route path="/upload/treatment" element={<UploadTreatment />} />
+        <Route path="/upload/treatment/multi" element={<UploadTreatmentMulti />} />
+        <Route path="/result/treatment" element={<ResultTreatment />} />
+
+        {/* News */}
+        <Route path="/news" element={<NewsSection />} />
+        <Route path="/news/:id" element={<NewsDetail />} />
+      </Routes>
+    </Router>
+  );
+}
+
+export default App;

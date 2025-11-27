@@ -5,7 +5,7 @@ import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
 type PredictionResult = {
-  prediction: number; 
+  prediction: number;
   probability?: number;
   top_features?: Array<{ name: string; importance: number }>;
 };
@@ -63,28 +63,28 @@ const ResultDiagnosis: React.FC = () => {
     : `Confirmatory diagnostics recommended: imaging, biopsy, and molecular testing if needed. Early-stage cases often qualify for curative interventions.`;
 
   // PDF Export
- const handleExportPDF = async () => {
-  const input = document.getElementById("diagnosis-report");
-  if (!input) return;
+  const handleExportPDF = async () => {
+    const input = document.getElementById("diagnosis-report");
+    if (!input) return;
 
-  try {
-    const canvas = await html2canvas(input, {
-      scale: 2,
-      useCORS: true,
-      allowTaint: false,
-      backgroundColor: "#f4f7ff", // fallback solid color
-    });
+    try {
+      const canvas = await html2canvas(input, {
+        scale: 2,
+        useCORS: true,
+        allowTaint: false,
+        backgroundColor: "#f4f7ff", // fallback solid color
+      });
 
-    const pdf = new jsPDF("p", "mm", "a4");
-    const imgData = canvas.toDataURL("image/png");
-    const pageWidth = pdf.internal.pageSize.getWidth();
-    const imgHeight = (canvas.height * pageWidth) / canvas.width;
-    pdf.addImage(imgData, "PNG", 0, 0, pageWidth, imgHeight);
-    pdf.save(`${cancerName || "diagnosis"}-report.pdf`);
-  } catch (err) {
-    console.error("PDF Export Error:", err);
-  }
-};
+      const pdf = new jsPDF("p", "mm", "a4");
+      const imgData = canvas.toDataURL("image/png");
+      const pageWidth = pdf.internal.pageSize.getWidth();
+      const imgHeight = (canvas.height * pageWidth) / canvas.width;
+      pdf.addImage(imgData, "PNG", 0, 0, pageWidth, imgHeight);
+      pdf.save(`${cancerName || "diagnosis"}-report.pdf`);
+    } catch (err) {
+      console.error("PDF Export Error:", err);
+    }
+  };
   const renderTopFeatures = () => {
     if (!predictionResult.top_features?.length) return null;
 
@@ -108,7 +108,7 @@ const ResultDiagnosis: React.FC = () => {
       className="flex flex-col min-h-screen bg-gradient-to-br from-[#f4f7ff] via-[#eef2ff] to-[#fafbff]"
     >
       <main className="flex-1 container mx-auto px-5 py-10">
-        
+
         {/* MAIN CONTAINER */}
         <div className="bg-white/90 backdrop-blur-md rounded-3xl shadow-xl border border-[#dfe3fa] p-10 max-w-6xl mx-auto">
 

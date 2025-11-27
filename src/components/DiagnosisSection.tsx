@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { motion, type Variants } from "framer-motion";
 import Footer from "./Footer";
 
 const DiagnosisSection: React.FC = () => {
@@ -111,7 +112,7 @@ const DiagnosisSection: React.FC = () => {
   };
 
   // Prevent native dropdown from opening if invalid; show error instead
-  const onCancerMouseDown = (e: React.MouseEvent<HTMLSelectElement>) => {
+  const onCancerMouseDown = () => {
     // allow always
   };
 
@@ -138,21 +139,45 @@ const DiagnosisSection: React.FC = () => {
     icon?.classList.toggle("rotate-180");
   };
 
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+
+
   return (
     <div className="flex flex-col min-h-screen bg-white">
       <main
         className="relative flex flex-col md:flex-row flex-1 overflow-hidden"
         style={{
-          backgroundImage: `url('/public/picture3.jpeg')`,
+          backgroundImage: `url('/public/picture1.jpg')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       >
         <div className="hidden md:block md:w-1/2" />
 
-        <div className="w-full md:w-1/2 flex items-center justify-center bg-[#6592bf]/90 py-10 md:py-0">
-          <div className="flex flex-col gap-6 bg-white rounded-lg shadow-lg p-6 sm:p-8 w-[90%] sm:w-[80%] md:max-w-md mx-auto">
-            <h2 className="text-2xl font-bold text-center text-[#191757]">Diagnosis</h2>
+        <motion.div
+          className="w-full md:w-[85%] aspect-[3/2] flex items-center justify-center bg-[#6592bf]/90 py-4 md:py-2 mx-auto"
+          initial={{ x: 300 }}
+          animate={{ x: 0 }}
+          transition={{ duration: 0.8, ease: "easeIn" }}
+        >
+          <motion.div
+            className="flex flex-col gap-6 bg-white rounded-lg shadow-lg p-6 sm:p-8 w-[90%] sm:w-[80%] md:max-w-md mx-auto"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            <h2 className="text-2xl font-bold text-center text-[#191757]">
+              Diagnosis
+            </h2>
 
             {/* Cancer Type */}
             <div>
@@ -170,7 +195,7 @@ const DiagnosisSection: React.FC = () => {
                   onClick={rotateIcon}
                   className={`w-full border rounded p-2 bg-white text-black appearance-none ${fieldError.cancer ? "border-red-500" : "border-gray-300"}`}
                 >
-                  <option value="">-- Choose --</option>
+                  <option value="">Choose</option>
                   {cancerList.map((c) => (
                     <option key={c.slug} value={c.slug}>
                       {c.name}
@@ -202,7 +227,7 @@ const DiagnosisSection: React.FC = () => {
                   disabled={featureList.length === 0}
                   className={`w-full border rounded p-2 bg-white text-black appearance-none ${fieldError.feature ? "border-red-500" : "border-gray-300"}`}
                 >
-                  <option value="">-- Choose --</option>
+                  <option value="">Choose</option>
                   {featureList.map((f) => (
                     <option key={f} value={f}>
                       {f.toUpperCase()}
@@ -233,7 +258,7 @@ const DiagnosisSection: React.FC = () => {
                   disabled={datasetList.length === 0}
                   className={`w-full border rounded p-2 bg-white text-black appearance-none ${fieldError.dataset ? "border-red-500" : "border-gray-300"}`}
                 >
-                  <option value="">-- Choose --</option>
+                  <option value="">Choose</option>
                   {datasetList.map((d) => (
                     <option key={d.key} value={d.key}>
                       {d.label}
@@ -265,15 +290,15 @@ const DiagnosisSection: React.FC = () => {
             >
               Continue
             </button>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </main>
 
       <div className="bg-[#aaaaaa] text-white text-center py-6 px-4">
         <p className="text-lg font-semibold">Empowering early cancer detection with AI technology</p>
       </div>
 
-     
+
       <Footer />
 
       {/* Error Popup */}

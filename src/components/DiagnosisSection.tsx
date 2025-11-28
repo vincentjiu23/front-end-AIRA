@@ -110,8 +110,8 @@ const CustomDropdown: React.FC<CustomDropdownProps> = ({
                     key={option.value}
                     onClick={() => handleSelect(option.value)}
                     className={`px-4 py-3 cursor-pointer transition-all duration-200 ${value === option.value
-                        ? "bg-[#191757] text-white font-semibold"
-                        : "hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 text-gray-700"
+                      ? "bg-[#191757] text-white font-semibold"
+                      : "hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 text-gray-700"
                       }`}
                   >
                     {option.label}
